@@ -2,6 +2,7 @@
 session_start();
 include("../../outline/conn.php");
 
+
 if(isset($_POST["login"])){
     
     $entr_mail=$_POST["mail"];
@@ -10,6 +11,8 @@ if(isset($_POST["login"])){
     $sql="SELECT * FROM admin_login where email='$entr_mail' AND password='$new_pass'";
     $result2=mysqli_query($conn, $sql); 
     $get = mysqli_fetch_assoc($result2);
+    $id=$get['id'];
+    $_SESSION['id']=$id;
       $name=$get['name'];
       $_SESSION['name']=$name;
       $mail=$get['email'];
