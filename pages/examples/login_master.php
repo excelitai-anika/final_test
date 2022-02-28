@@ -1,13 +1,6 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname ="cmsp";
-$conn = new mysqli($servername, $username, $password,$dbname);
-if(!$conn){
-    die("error");
-}
+include("../../outline/conn.php");
 
 if(isset($_POST["login"])){
     
@@ -25,12 +18,15 @@ if(isset($_POST["login"])){
       $_SESSION['type']=$type;
       // $profile_picture =$_get['profile_picture'];
       // $_SESSION['profile_picture']=$profile_picture;
+      $sql2="SELECT * FROM admin_login where type='user' ";
+      $result4=mysqli_query($conn, $sql2);
     
- if($result2)
-    header("Location:../../dashboard_master_bug.php");
-
+ if($_SESSION['type']=='admin')
+ header("Location:../../admin_login.php");
+    
   else
-echo "failed";
+  header("Location:../../dashboard_master_bug.php");
+ 
 
 }
 ?>
@@ -78,14 +74,6 @@ echo "failed";
             </div>
           </div>
         </div>
-        <!-- <div class="input-group mb-3">
-        <label for="">User Type :</label>
-        <br>
-        <select name="usertype" id="usertype">
-          <option value="Admin">Admin</option>
-          <option value="User">User</option>     
-        </select>
-          </div> -->
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

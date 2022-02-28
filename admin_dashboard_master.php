@@ -255,7 +255,7 @@ $pp="pages/examples/images/".$data['profile_picture'];
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <a href="pages/examples/logout" class="nav-link active">
+            <a href="pages/examples/logout.php" class="nav-link active">
               <p>
                 logout
                 <i class="right fas fa-angle-left"></i>
