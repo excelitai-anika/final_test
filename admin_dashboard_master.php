@@ -21,7 +21,9 @@ $pp="pages/examples/images/".$data['profile_picture'];
   <img src="<?php echo $data['profile_picture']; ?>">
   <?php
 }
-  
+  $sql2="SELECT * FROM admin_login where type='user' ";
+  $result4=mysqli_query($conn, $sql2); 
+    
 }
 
 ?>
@@ -60,6 +62,7 @@ $pp="pages/examples/images/".$data['profile_picture'];
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
+<h1></h1>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -246,13 +249,18 @@ $pp="pages/examples/images/".$data['profile_picture'];
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <a href="pages/examples/logout.php" class="nav-link active">
+            <a href="pages/examples/userlist.php" class="nav-link active">
+              <p>
+                User
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <a href="pages/examples/logout" class="nav-link active">
               <p>
                 logout
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          
           </li>
         </ul>
       </nav>

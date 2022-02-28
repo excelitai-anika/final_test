@@ -28,7 +28,6 @@ if(!$conn){
     die("error");
 }
   if(isset($_POST["register"])){
-    echo 'MESBA';
 // //upload image
 //       $file=$_FILES['fileToUpload'];
 //       $fileName = $_FILES['name'];
@@ -50,51 +49,23 @@ if(!$conn){
       $mail=$_POST["mail"];
       $name=$_POST["name"];
       $pass=$_POST["pass"];
+      // $type=$_POST["type"];
       $con_pass=$_POST["con_pass"];
       $filename = $_FILES['profile_picture']['name'];
       $tempname = $_FILES["profile_picture"]["tmp_name"];    
           $folder = "images/".$filename;
-      // $profile_picture=$_POST[""];
-      // $fileName=$_FILES['profile_picture']['name'];
-      // $tmploc=$_FILES['profile_picture']['tmp_name'];
-      // $uploc ="images/".$filename;
-      // if(move_uploaded_file($tmploc,$uploc)){
-      //   echo "uploaded";
-      // }
-      // else
-      // {
-      //   echo " couldn't";
-      // }
-      // $errors= array();
-      // $file_name = $_FILES['image']['name'];
-      // $file_size =$_FILES['image']['size'];
-      // $file_tmp =$_FILES['image']['tmp_name'];
-      // $file_type=$_FILES['image']['type'];
-      // $result=explode('.',$_FILES['image']['name']);
-      // $file_ext=strtolower(end($result));
-      
-      // $expensions= array("jpeg","jpg","png");
-      
-      // if(in_array($file_ext,$expensions)=== false){
-      //    $errors[]="extension not allowed, please choose a JPEG or PNG file.";
-      // }
-      
-      // if($file_size > 2097152){
-      //    $errors[]='File size must be excately 2 MB';
-      // }
-      
-      // if(empty($errors)==true){
-      //    move_uploaded_file($file_tmp,"images/".$file_name);
-      //    echo "Success";
-      // }else{
-      //    print_r($errors);
-      // }       
+
+          if (move_uploaded_file($tempname, $folder))  {
+            $msg = "Image uploaded successfully";
+        }else{
+            $msg = "Failed to upload image";
+      }      
            
     if($pass==$con_pass){
         $pass=md5($pass);
 
-            $sql= "INSERT INTO admin_login (profile_picture,email,name,password) 
-                    VALUES('$filename','$mail','$name','$pass')";
+            $sql= "INSERT INTO admin_login (profile_picture,email,name,password,type) 
+                    VALUES('$filename','$mail','$name','$pass','user')";
             $result1=mysqli_query($conn, $sql); 
             echo "<script type='text/javascript'>alert('User is added'); window.location.href='login_master.php'</script>";
         }
@@ -149,7 +120,14 @@ if(!$conn){
             </div>
           </div>
         </div>
-
+      <!-- <div class="input-group mb-3">
+        <label for="">User Type :</label>
+        <br>
+        <select name="type" id="type">
+          <option value="1">Admin</option>
+          <option value="2">User</option>     
+        </select>
+          </div>  -->
         <div class="row">
           <!-- /.col -->
           <div class="col-6">
